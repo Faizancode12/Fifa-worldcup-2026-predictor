@@ -1,0 +1,1 @@
+# Fifa-worldcup-2026-predictor
