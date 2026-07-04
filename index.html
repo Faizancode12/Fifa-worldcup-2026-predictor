@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026 Predictor</title>
+    <meta name="description"
+        content="Predict the entire FIFA World Cup 2026 tournament — groups, knockouts and the champion.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ============================== LOADING SCREEN ============================== -->
+    <div id="loading-screen">
+        <div class="loader-trophy"><i class="fa-solid fa-trophy"></i></div>
+        <div class="loader-title">FIFA WORLD CUP <span>2026</span> PREDICTOR</div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <!-- ============================== TOASTS ============================== -->
+    <div id="toast-stack" aria-live="polite"></div>
+
+    <!-- ============================== BACKEND CONNECTION STATUS ============================== -->
+    <div id="backend-status-banner" style="display:none"></div>
+
+    <!-- ============================== NAVBAR ============================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="brand" data-page="home">
+                <span class="brand-mark"><i class="fa-solid fa-futbol"></i></span>
+                <span>WORLD CUP<small>2026 &middot; PREDICTOR</small></span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" data-page="home" class="active">Home</a></li>
+                <li><a href="#" data-page="teams">Teams</a></li>
+                <li><a href="#" data-page="groups">Groups</a></li>
+                <li><a href="#" data-page="predictor">Predictions</a></li>
+                <li><a href="#" data-page="leaderboard">Leaderboard</a></li>
+                <li><a href="#" data-page="statistics">Statistics</a></li>
+                <li><a href="#" data-page="profile" id="nav-profile-link">Profile</a></li>
+                <li><a href="#" data-page="admin">Admin</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn btn-outline btn-sm" id="nav-login-btn" data-open-modal="login-modal"><i
+                        class="fa-solid fa-right-to-bracket"></i><span> Login</span></button>
+                <a class="btn btn-primary btn-sm" id="nav-profile-btn" data-page="profile" style="display:none"><i
+                        class="fa-solid fa-user"></i><span> Profile</span></a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><i
+                        class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================== HOME PAGE ============================== -->
+    <div class="page active" id="page-home">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-particles" id="hero-particles"></div>
+            <div class="hero-glow"></div>
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fa-solid fa-star"></i> 48 Teams &middot; 104 Matches &middot; One
+                    Champion</span>
+                <h1>FIFA WORLD CUP <span class="accent">2026</span> PREDICTOR</h1>
+                <p class="subtitle">Predict the entire tournament and become the champion of predictions. Build your
+                    bracket, back your teams, and let the AI engine settle the arguments.</p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary" data-page="predictor" onclick="goToPage('predictor')"><i
+                            class="fa-solid fa-bolt"></i> Start Prediction</button>
+                    <button class="btn btn-outline" data-page="teams" onclick="goToPage('teams')"><i
+                            class="fa-solid fa-flag"></i> Explore Teams</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><strong data-counter="48">0</strong><span>Teams</span></div>
+                    <div class="hero-stat"><strong data-counter="12">0</strong><span>Groups</span></div>
+                    <div class="hero-stat"><strong data-counter="104">0</strong><span>Matches</span></div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div><span>Scroll</span>
+            </div>
+        </section>
+
+        <!-- DASHBOARD -->
+        <section class="page-section" id="dashboard">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div><span class="eyebrow">Tournament Overview</span>
+                        <h2>Live Dashboard</h2>
+                    </div>
+                    <p class="section-sub">A quick snapshot of the field, the format, and where your predictions
+                        currently stand.</p>
+                </div>
+                <div class="dash-grid">
+                    <div class="glass dash-card reveal">
+                        <div class="dash-icon"><i class="fa-solid fa-users"></i></div><strong
+                            id="dash-teams">48</strong><span>Teams</span>
+                    </div>
+                    <div class="glass dash-card reveal">
+                        <div class="dash-icon"><i class="fa-solid fa-layer-group"></i></div><strong
+                            id="dash-groups">12</strong><span>Groups</span>
+                    </div>
+                    <div class="glass dash-card reveal">
+                        <div class="dash-icon"><i class="fa-solid fa-futbol"></i></div><strong
+                            id="dash-matches">104</strong><span>Matches</span>
+                    </div>
+                    <div class="glass dash-card reveal">
+                        <div class="dash-icon"><i class="fa-solid fa-trophy"></i></div><strong id="dash-champion"
+                            style="font-size:1.3rem">TBD</strong><span>Champion Pick</span>
+                    </div>
+                    <div class="glass dash-card reveal">
+                        <div class="dash-icon"><i class="fa-solid fa-chart-line"></i></div><strong id="dash-stage"
+                            style="font-size:1.15rem">Group Stage</strong><span>Current Stage</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEASER: GROUPS PREVIEW -->
+        <section class="page-section tight">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div><span class="eyebrow">The Draw</span>
+                        <h2>Groups A–L</h2>
+                    </div>
+                    <button class="btn btn-outline" onclick="goToPage('groups')">View All Groups <i
+                            class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <p class="section-sub reveal">All 48 teams have been drawn into twelve groups of four. Head to the
+                    Groups page for full standings, or jump straight into the bracket to start predicting.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================== TEAMS PAGE ============================== -->
+    <div class="page" id="page-teams">
+        <section class="page-section" style="padding-top:150px">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div><span class="eyebrow">The Field</span>
+                        <h2>All 48 Qualified Teams</h2>
+                    </div>
+                    <p class="section-sub">Every nation heading to the 2026 tournament, ranked by FIFA standing.</p>
+                </div>
+
+                <div class="glass toolbar reveal">
+                    <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text"
+                            id="team-search" placeholder="Search teams by name..."></div>
+                    <div class="select-wrap"><select id="team-group-filter">
+                            <option value="">All Groups</option>
+                        </select></div>
+                    <div class="select-wrap">
+                        <select id="team-sort">
+                            <option value="ranking">Sort: FIFA Ranking</option>
+                            <option value="name">Sort: Name (A–Z)</option>
+                            <option value="group">Sort: Group</option>
+                            <option value="attack">Sort: Attack Rating</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="teams-grid" id="teams-grid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================== GROUPS PAGE ============================== -->
+    <div class="page" id="page-groups">
+        <section class="page-section" style="padding-top:150px">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div><span class="eyebrow">Group Stage</span>
+                        <h2>Groups A – L</h2>
+                    </div>
+                    <p class="section-sub">Top two in each group advance. Standings shown reflect the current
+                        simulation.</p>
+                </div>
+                <div class="groups-grid" id="groups-grid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================== PREDICTOR / KNOCKOUT PAGE ============================== -->
+    <div class="page" id="page-predictor">
+        <section class="page-section" style="padding-top:150px">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div><span class="eyebrow">Build Your Bracket</span>
+                        <h2>Knockout Predictor</h2>
+                    </div>
+                    <p class="section-sub">Click a team to advance them, or let the AI engine decide. Every result
+                        cascades automatically through the bracket.</p>
+                </div>
+
+                <div class="glass" id="predictor-login-banner" style="padding:16px 22px;margin-bottom:20px;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap">
+                    <span><i class="fa-solid fa-lock" style="color:var(--gold-400);margin-right:8px"></i>Log in to make predictions — each correct pick vs. the AI earns you 100 points on the leaderboard.</span>
+                    <button class="btn btn-primary btn-sm" data-open-modal="login-modal">Log In</button>
+                </div>
+
+                <div class="glass" id="predictor-count-banner" style="padding:14px 22px;margin-bottom:16px;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
+                    <span><i class="fa-solid fa-list-check" style="color:var(--gold-400);margin-right:8px"></i>Predictions made: <strong id="predictor-pick-count">0</strong><span id="predictor-pick-total-wrap"> / <span id="predictor-pick-total">—</span> matches</span></span>
+                    <span id="predictor-points-summary" style="opacity:.85"></span>
+                </div>
+
+                <div class="predictor-toolbar reveal">
+                    <div class="glass stage-tabs">
+                        <button class="active" data-stage="R32">R32</button>
+                        <button data-stage="R16">R16</button>
+                        <button data-stage="QF">Quarters</button>
+                        <button data-stage="SF">Semis</button>
+                        <button data-stage="F">Final</button>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap">
+                        <button class="btn btn-outline btn-sm" id="reset-bracket-btn"><i
+                                class="fa-solid fa-rotate-left"></i> Reset Bracket</button>
+                        <button class="btn btn-primary" id="simulate-tournament-btn"><i
+                                class="fa-solid fa-wand-magic-sparkles"></i> Simulate Full Tournament</button>
+                    </div>
+                </div>
+
+                <div class="bracket-scroll" id="bracket-scroll">
+                    <div id="bracket-wrap"></div>
+                </div>
+
+                <div id="champion-wrap"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================== LEADERBOARD PAGE ============================== -->
+    <div class="page" id="page-leaderboard">
+        <section class="page-section" style="padding-top:150px">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div><span class="eyebrow">Top Predictors</span>
+                        <h2>Leaderboard</h2>
+                    </div>
+                    <p class="section-sub">See how your predictions stack up against the community.</p>
+                </div>
+
+                <div class="glass toolbar reveal">
+                    <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text"
+                            id="lb-search" placeholder="Search players..."></div>
+                </div>
+
+                <div class="glass leaderboard-table-wrap reveal" style="padding:8px">
+                    <table class="lb-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>User</th>
+                                <th>Correct</th>
+                                <th>Points</th>
+                                <th>Accuracy</th>
+                                <th>Country</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body"></tbody>
+                    </table>
+                </div>
+                <div class="pagination"><button class="active">1</button><button>2</button><button>3</button><button><i
+                            class="fa-solid fa-chevron-right"></i></button></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================== STATISTICS PAGE ============================== -->
+    <div class="page" id="page-statistics">
+        <section class="page-section" style="padding-top:150px">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div><span class="eyebrow">Insights</span>
+                        <h2>Tournament Statistics</h2>
+                    </div>
+                    <p class="section-sub">Aggregated AI predictions across the whole community.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="glass chart-card reveal">
+                        <h4><i class="fa-solid fa-crown"></i> Predicted Champions</h4><canvas
+                            id="chart-champions"></canvas>
+                    </div>
+                    <div class="glass chart-card reveal">
+                        <h4><i class="fa-solid fa-fire"></i> Most Selected Team</h4><canvas
+                            id="chart-selected"></canvas>
+                    </div>
+                    <div class="glass chart-card reveal">
+                        <h4><i class="fa-solid fa-chart-simple"></i> Win Probability Profile</h4><canvas
+                            id="chart-winprob"></canvas>
+                    </div>
+                    <div class="glass chart-card reveal">
+                        <h4><i class="fa-solid fa-arrow-trend-up"></i> Prediction Distribution</h4><canvas
+                            id="chart-distribution"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================== PROFILE PAGE ============================== -->
+    <div class="page" id="page-profile">
+        <section class="page-section" style="padding-top:150px">
+            <div class="container">
+                <div class="glass profile-header reveal">
+                    <div class="profile-avatar" id="profile-avatar">
+                        <img id="profile-avatar-img" alt="" style="display:none">
+                        <span id="profile-avatar-letters">GP</span>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profile-name">Guest Predictor</h2>
+                        <p id="profile-email">guest@worldcup.app</p>
+                        <div class="profile-badges" id="profile-badges"></div>
+                    </div>
+                    <button class="btn btn-outline" style="margin-left:auto" id="edit-profile-btn"><i class="fa-solid fa-pen"></i> Edit
+                        Profile</button>
+                    <button class="btn btn-ghost" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log
+                        out</button>
+                    <a class="btn btn-primary" id="profile-login-btn" data-open-modal="login-modal" style="display:none"><i class="fa-solid fa-right-to-bracket"></i> Log in</a>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="glass reveal" style="padding:26px">
+                        <h4 style="margin-bottom:16px">Prediction History</h4>
+                        <div id="profile-history"></div>
+                    </div>
+                    <div class="glass reveal" style="padding:26px">
+                        <h4 style="margin-bottom:16px">Statistics</h4>
+                        <div class="history-item"><span>Favourite Team</span><strong id="stat-favourite-team">—</strong></div>
+                        <div class="history-item"><span>Prediction Accuracy</span><strong id="stat-accuracy">—</strong></div>
+                        <div class="history-item"><span>Total Predictions</span><strong id="stat-total-predictions">—</strong></div>
+                        <div class="history-item"><span>Current Rank</span><strong id="stat-rank">—</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================== ADMIN PAGE ============================== -->
+    <div class="page" id="page-admin">
+        <div class="admin-layout" style="padding-top:var(--nav-h)">
+            <aside class="admin-sidebar">
+                <h5>Manage</h5>
+                <div class="admin-nav">
+                    <button class="active" data-section="dashboard"><i class="fa-solid fa-gauge"></i> Dashboard</button>
+                    <button data-section="teams"><i class="fa-solid fa-flag"></i> Teams</button>
+                    <button data-section="matches"><i class="fa-solid fa-futbol"></i> Matches</button>
+                    <button data-section="users"><i class="fa-solid fa-users"></i> Users</button>
+                    <button data-section="settings"><i class="fa-solid fa-gear"></i> Settings</button>
+                </div>
+            </aside>
+            <main class="admin-main">
+                <div class="admin-topbar">
+                    <div><span class="eyebrow">Control Center</span>
+                        <h2 style="font-size:1.6rem;margin-top:6px">Admin Dashboard</h2>
+                    </div>
+                    <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> New Entry</button>
+                </div>
+                <div class="admin-cards">
+                    <div class="glass dash-card">
+                        <div class="dash-icon"><i class="fa-solid fa-flag"></i></div><strong
+                            id="admin-total-teams">48</strong><span>Teams</span>
+                    </div>
+                    <div class="glass dash-card">
+                        <div class="dash-icon"><i class="fa-solid fa-futbol"></i></div><strong
+                            id="admin-total-matches">104</strong><span>Matches</span>
+                    </div>
+                    <div class="glass dash-card">
+                        <div class="dash-icon"><i class="fa-solid fa-users"></i></div><strong
+                            id="admin-total-users">1,252</strong><span>Users</span>
+                    </div>
+                    <div class="glass dash-card">
+                        <div class="dash-icon"><i class="fa-solid fa-chart-line"></i></div><strong
+                            id="admin-total-predictions">3,482</strong><span>Predictions</span>
+                    </div>
+                </div>
+                <div id="admin-content"></div>
+            </main>
+        </div>
+    </div>
+
+    <!-- ============================== FOOTER ============================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand"><span class="brand-mark"><i class="fa-solid fa-futbol"></i></span><span>WORLD
+                            CUP<small>2026 &middot; PREDICTOR</small></span></div>
+                    <p>An independent, fan-built prediction platform for the 2026 FIFA World Cup. Not affiliated with
+                        FIFA.</p>
+                    <div class="social-icons">
+                        <a href="#" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="btn-icon" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="btn-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Product</h5><a href="#" data-page="teams">Teams</a><a href="#" data-page="groups">Groups</a><a
+                        href="#" data-page="predictor">Predictions</a><a href="#"
+                        data-page="leaderboard">Leaderboard</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Careers</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span id="footer-year"></span> World Cup 2026 Predictor. All rights reserved.</span>
+                <span>Built with vanilla HTML, CSS &amp; JavaScript.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================== LOGIN MODAL ============================== -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="glass modal-box">
+            <button class="modal-close" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-head">
+                <span class="brand-mark"><i class="fa-solid fa-futbol"></i></span>
+                <h3>Welcome Back</h3>
+                <p>Sign in to track your predictions and climb the leaderboard.</p>
+            </div>
+            <form id="login-form" novalidate>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="you@example.com" required>
+                    <span class="field-error" id="login-email-error">Enter a valid email address.</span>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="input-wrap">
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                        <i class="fa-solid fa-eye toggle-pass"></i>
+                    </div>
+                    <span class="field-error" id="login-password-error">Password must be at least 6 characters.</span>
+                </div>
+                <div class="form-between">
+                    <label class="form-check"><input type="checkbox"> Remember me</label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+            <div class="modal-switch">New here? <a href="#"
+                    onclick="closeModal('login-modal');openModal('register-modal')">Create an account</a></div>
+        </div>
+    </div>
+
+    <!-- ============================== REGISTER MODAL ============================== -->
+    <div class="modal-overlay" id="register-modal">
+        <div class="glass modal-box">
+            <button class="modal-close" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-head">
+                <h3>Create Your Account</h3>
+                <p>Join the community and start predicting the tournament.</p>
+            </div>
+            <label class="avatar-upload" for="reg-avatar-input" id="reg-avatar-upload" title="Upload a profile picture">
+                <img id="reg-avatar-preview" alt="Avatar preview" style="display:none">
+                <i class="fa-solid fa-camera" id="reg-avatar-icon"></i>
+            </label>
+            <input type="file" id="reg-avatar-input" accept="image/png,image/jpeg,image/webp" style="display:none">
+            <form id="register-form" novalidate>
+                <div class="form-group">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" placeholder="Jordan Alvarez" required>
+                    <span class="field-error" id="reg-name-error">Please enter your full name.</span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" placeholder="predictor26" required>
+                        <span class="field-error" id="reg-username-error">3+ letters, numbers or underscores.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-country">Country</label>
+                        <select id="reg-country" class="country-select">
+                            <option value="">Select country</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" placeholder="you@example.com" required>
+                    <span class="field-error" id="reg-email-error">Enter a valid email address.</span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <div class="input-wrap"><input type="password" id="reg-password" placeholder="••••••••"
+                                required><i class="fa-solid fa-eye toggle-pass"></i></div>
+                        <span class="field-error" id="reg-password-error">6+ characters required.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-confirm">Confirm Password</label>
+                        <div class="input-wrap"><input type="password" id="reg-confirm" placeholder="••••••••"
+                                required><i class="fa-solid fa-eye toggle-pass"></i></div>
+                        <span class="field-error" id="reg-confirm-error">Passwords do not match.</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            </form>
+            <div class="modal-switch">Already have an account? <a href="#"
+                    onclick="closeModal('register-modal');openModal('login-modal')">Sign in</a></div>
+        </div>
+    </div>
+
+    <!-- ============================== EDIT PROFILE MODAL ============================== -->
+    <div class="modal-overlay" id="edit-profile-modal">
+        <div class="glass modal-box">
+            <button class="modal-close" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-head">
+                <h3>Edit Your Profile</h3>
+                <p>Update your photo, display name and country.</p>
+            </div>
+            <label class="avatar-upload" for="edit-avatar-input" id="edit-avatar-upload" title="Upload a profile picture">
+                <img id="edit-avatar-preview" alt="Avatar preview" style="display:none">
+                <i class="fa-solid fa-camera" id="edit-avatar-icon"></i>
+            </label>
+            <input type="file" id="edit-avatar-input" accept="image/png,image/jpeg,image/webp" style="display:none">
+            <form id="edit-profile-form" novalidate>
+                <div class="form-group">
+                    <label for="edit-name">Full Name</label>
+                    <input type="text" id="edit-name" placeholder="Jordan Alvarez" required>
+                    <span class="field-error" id="edit-name-error">Please enter your full name.</span>
+                </div>
+                <div class="form-group">
+                    <label for="edit-country">Country</label>
+                    <select id="edit-country" class="country-select">
+                        <option value="">Select country</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Email</label>
+                    <input type="email" id="edit-email" disabled>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="vendor/chart.umd.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
