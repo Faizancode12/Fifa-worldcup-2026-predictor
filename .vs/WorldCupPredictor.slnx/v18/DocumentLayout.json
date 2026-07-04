@@ -1,0 +1,112 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|c:\\users\\faiza\\downloads\\worldcuppredictor_backend_updated (2)\\worldcuppredictor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|solutionrelative:worldcuppredictor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|c:\\users\\faiza\\downloads\\worldcuppredictor_backend_updated (2)\\worldcuppredictor\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|solutionrelative:worldcuppredictor\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|c:\\users\\faiza\\downloads\\worldcuppredictor_backend_updated (2)\\worldcuppredictor\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|solutionrelative:worldcuppredictor\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|c:\\users\\faiza\\downloads\\worldcuppredictor_backend_updated (2)\\worldcuppredictor\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|solutionrelative:worldcuppredictor\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|c:\\users\\faiza\\downloads\\worldcuppredictor_backend_updated (2)\\worldcuppredictor\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E20FD917-FF7B-5B25-E024-4B39DC98B88F}|WorldCupPredictor\\WorldCupPredictor.csproj|solutionrelative:worldcuppredictor\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "WorldCupPredictor\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "WorldCupPredictor\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAAI4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T11:50:39.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "WorldCupPredictor\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\Properties\\launchSettings.json",
+              "RelativeToolTip": "WorldCupPredictor\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-04T10:50:26.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "WorldCupPredictor\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\appsettings.Development.json",
+              "RelativeToolTip": "WorldCupPredictor\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-04T10:50:01.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\appsettings.json",
+              "RelativeDocumentMoniker": "WorldCupPredictor\\appsettings.json",
+              "ToolTip": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\appsettings.json",
+              "RelativeToolTip": "WorldCupPredictor\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-04T10:49:44.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\Program.cs",
+              "RelativeDocumentMoniker": "WorldCupPredictor\\Program.cs",
+              "ToolTip": "C:\\Users\\Faiza\\Downloads\\WorldCupPredictor_backend_updated (2)\\WorldCupPredictor\\Program.cs",
+              "RelativeToolTip": "WorldCupPredictor\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T10:49:21.02Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
